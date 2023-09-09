@@ -1,0 +1,12 @@
+
+w
+java:S1488;"\Immediately return this expression instead of assigning it to the temporary variable "list".(ÚžîÜÿÿÿÿÿ
+l
+java:S1450"VRemove the "adapter" field and declare it as a local variable in the relevant methods.(üìÅÃ
+T
+java:S1172"9Remove these unused method parameters "param1", "param2".(´ëŒÂúÿÿÿÿ
+>	java:S108&")Either remove or fill this block of code.(ÃÝúÝ
+`
+java:S18543"ERemove this useless assignment to local variable "gridLayoutManager".(Õ›¸…üÿÿÿÿ
+Q
+java:S14813"6Remove this unused "gridLayoutManager" local variable.(Õ›¸…üÿÿÿÿ

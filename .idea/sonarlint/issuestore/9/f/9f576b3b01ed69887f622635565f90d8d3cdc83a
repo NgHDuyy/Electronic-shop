@@ -1,0 +1,8 @@
+
+>
+java:S1604"(Make this anonymous inner class a lambda(å¨××
+f
+java:S1301+"KReplace this "switch" statement by "if" statements to increase readability.(¼œóÛüÿÿÿÿ
+u
+java:S1450"_Remove the "viewPagerAdapter" field and declare it as a local variable in the relevant methods.(¬í—Ô
+<	java:S131+""Add a default case to this switch.(¼œóÛüÿÿÿÿ
