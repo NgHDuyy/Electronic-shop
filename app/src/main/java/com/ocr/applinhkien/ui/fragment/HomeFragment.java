@@ -48,15 +48,20 @@ public class HomeFragment extends Fragment {
 
         view =inflater.inflate( R.layout.fragment_home, container, false );
         adapter = new ProductAdapter( getContext() );
-        GridLayoutManager gridLayoutManager = new GridLayoutManager( getActivity(),2 );
-        adapter.setData( getListItem());
-        rcView.setAdapter( adapter );
         intUI();
+        rcView.setLayoutManager( new GridLayoutManager( getActivity(),2 ) );
+        rcView.setAdapter(adapter);
+        adapter.setData( getListItem());
         return view;
     }
 
     private List<Item> getListItem() {
         List<Item> list = new ArrayList<>();
+        list.add( new Item( 1,"aaa","aaa","aaa",100,200,10 ) );
+        list.add( new Item( 1,"aaa","aaa","aaa",100,200 ,20) );
+        list.add( new Item( 1,"aaa","aaa","aaa",100,200 ,0) );
+        list.add( new Item( 1,"aaa","aaa","aaa",100,200 ,20) );
+
         return list;
     }
 

@@ -7,14 +7,16 @@ public class Item {
     private String mota;
     private int price;
     private int soluong;
+    private int sale;
 
-    public Item(int id,String name, String urlImage, String mota, int price, int soluong) {
+    public Item(int id,String name, String urlImage, String mota, int price, int soluong,int sale) {
         this.id = id;
         this.urlImage = urlImage;
         this.mota = mota;
         this.price = price;
         this.soluong = soluong;
         this.name=name;
+        this.sale=sale;
     }
 
     public String getName() {
@@ -63,5 +65,13 @@ public class Item {
 
     public void setSoluong(int soluong) {
         this.soluong = soluong;
+    }
+
+    public int getSale() {
+        return sale;
+    }
+
+    public void setSale(int sale) {
+        this.sale = sale;
     }
 }
