@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ocr.applinhkien.R;
 import com.ocr.applinhkien.adapter.ProductAdapter;
 import com.ocr.applinhkien.model.Item;
+import com.ocr.applinhkien.model.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class HomeFragment extends Fragment {
     private ProductAdapter adapter;
     private RecyclerView rcView;
     private View view;
+    private TextView tvName;
 
 
     public static HomeFragment newInstance(String param1, String param2) {
@@ -52,6 +55,7 @@ public class HomeFragment extends Fragment {
         rcView.setLayoutManager( new GridLayoutManager( getActivity(),2 ) );
         rcView.setAdapter(adapter);
         adapter.setData( getListItem());
+        tvName.setText( UserManager.getInstance().getCurrentUser().getUsername());
         return view;
     }
 
@@ -67,6 +71,7 @@ public class HomeFragment extends Fragment {
 
     private void intUI() {
         rcView = view.findViewById( R.id.rcvItem );
+        tvName=view.findViewById( R.id.tv_name );
     }
 
 
