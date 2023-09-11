@@ -47,90 +47,106 @@ public class SignInActivity extends AppCompatActivity {
         apiInterface = RetrofitClient.getApi();
 
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
+        btnSignIn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getListUser();
                 clickLogin();
             }
-        });
+        } );
 
     }
 
     private void initControll() {
-        txtSignUp.setOnClickListener(new View.OnClickListener() {
+        txtSignUp.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent( getApplicationContext(), SignUpActivity.class );
+                startActivity( intent );
             }
-        });
+        } );
     }
 
-    private void iniUi(){
-        layoutSignUp =findViewById( R.id.layout_sign_up );
-        edtEmailSignIn=findViewById( R.id.edt_email_in );
-        edtPasswordSignIn=findViewById( R.id.edt_password_in );
-        btnSignIn=findViewById( R.id.btn_sign_in );
-        txtSignUp=findViewById(R.id.txt_sign_up);
+    private void iniUi() {
+        layoutSignUp = findViewById( R.id.layout_sign_up );
+        edtEmailSignIn = findViewById( R.id.edt_email_in );
+        edtPasswordSignIn = findViewById( R.id.edt_password_in );
+        btnSignIn = findViewById( R.id.btn_sign_in );
+        txtSignUp = findViewById( R.id.txt_sign_up );
 
 
     }
 
-    private void clickLogin(){
+    private void clickLogin() {
         String strEmail = edtEmailSignIn.getText().toString().trim();
         String strPassword = edtPasswordSignIn.getText().toString().trim();
 
-        if (mListUser == null || mListUser.isEmpty()){
+        if (mListUser == null || mListUser.isEmpty()) {
             return;
         }
 
         boolean isHasUser = false;
-        for (User user: mListUser){
-            if (strEmail.equals(user.getEmail()) && strPassword.equals(user.getPassword())){
+        for (User user : mListUser) {
+            if (strEmail.equals( user.getEmail() ) && strPassword.equals( user.getPassword() )) {
                 isHasUser = true;
                 mUser = user;
 
                 break;
             }
         }
-        if (isHasUser){
+        if (isHasUser) {
             //MainActivity
-            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+            Intent intent = new Intent( SignInActivity.this, MainActivity.class );
             Bundle bundle = new Bundle();
-            bundle.putSerializable("Object_user", mUser);
-            UserManager.getInstance().setCurrentUser(mUser);
-            UserManager.getInstance().setLoggedIn(true);
-            intent.putExtras(bundle);
-            startActivity(intent);
+            bundle.putSerializable( "Object_user", mUser );
+            UserManager.getInstance().setCurrentUser( mUser );
+            UserManager.getInstance().setLoggedIn( true );
+            intent.putExtras( bundle );
+            startActivity( intent );
             finish();
-        }
-        else {
-            Toast.makeText(SignInActivity.this, "Email hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText( SignInActivity.this, "Email hoặc mật khẩu không đúng", Toast.LENGTH_SHORT ).show();
         }
     }
 
-    private  void getListUser(){
-        apiInterface.getListUser()
-                .enqueue(new Callback<GetUserResponse>() {
-                    @Override
-                    public void onResponse(Call<GetUserResponse> call, Response<GetUserResponse> response) {
-                        //  Log.d("check", "onResponse: message = "+response.message() +"  body=" +response.body().toString());
-                        if (response.isSuccessful()) {
-                            mListUser = response.body().getData();
-                            Log.d("List_User", mListUser.size() + "");
-                        } else {
-                            Toast.makeText(SignInActivity.this, "Failed to get user list", Toast.LENGTH_SHORT).show();
-                        }
-                    }
+    private void getListUser() {
+        apiInterface.getListUser().enqueue( new Callback<GetUserResponse>() {
+            @Override
+            public void onResponse(Call<GetUserResponse> call, Response<GetUserResponse> response) {
+                if (response.isSuccessful()) {
+                    mListUser = response.body().getData();
+                    Log.d( "List_User", mListUser.size() + "" );
+                } else {
+                    Toast.makeText( SignInActivity.this, "Failed to get user list", Toast.LENGTH_SHORT ).show();
+                }
+            }
 
-                    @Override
-                    public void onFailure(Call<GetUserResponse> call, Throwable t) {
-                        t.printStackTrace();
-                        Toast.makeText(SignInActivity.this, "Failed to connect to API", Toast.LENGTH_SHORT).show();
-                    }
-                });
+            @Override
+            public void onFailure(Call<GetUserResponse> call, Throwable t) {
+                t.printStackTrace();
+                Toast.makeText( SignInActivity.this, "Failed to connect to API", Toast.LENGTH_SHORT ).show();
+            }
+        } );
+//                .enqueue(new Callback<GetUserResponse>() {
+//                    @Override
+//                    public void onResponse(Call<GetUserResponse> call, Response<GetUserResponse> response) {
+//                        //  Log.d("check", "onResponse: message = "+response.message() +"  body=" +response.body().toString());
+//                        if (response.isSuccessful()) {
+//                            mListUser = response.body().getData();
+//                            Log.d("List_User", mListUser.size() + "");
+//                        } else {
+//                            Toast.makeText(SignInActivity.this, "Failed to get user list", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<GetUserResponse> call, Throwable t) {
+//                        t.printStackTrace();
+//                        Toast.makeText(SignInActivity.this, "Failed to connect to API", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+
+
     }
-
-
 }
