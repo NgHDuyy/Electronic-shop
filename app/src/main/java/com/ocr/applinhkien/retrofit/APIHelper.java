@@ -19,7 +19,7 @@ import retrofit2.http.Query;
 public class APIHelper {
 
     private APIService api;
-    private final String BASE_URL = "";
+    private final String BASE_URL = "http://192.168.1.57/electronic/";
 
     public APIHelper() {
         if (api == null) {
@@ -111,6 +111,29 @@ public class APIHelper {
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
                     result.execute("");
+                }
+            });
+        }
+    }
+    public void getListProduct(StringCallback res){
+        if (api!= null){
+            api.getProduct().enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.isSuccessful()){
+                        if (response.body() != null){
+                            res.execute(response.body());
+                        } else {
+                            res.execute("");
+                        }
+                    } else {
+                        res.execute("");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    res.execute("");
                 }
             });
         }

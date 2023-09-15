@@ -6,18 +6,20 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ocr.applinhkien.PreferenceHelper;
 import com.ocr.applinhkien.R;
-import com.ocr.applinhkien.model.UserManager;
 
 
 public class SplashScreen extends AppCompatActivity {
+
+    private PreferenceHelper preferenceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_fast_screen );
-        UserManager.getInstance().init(this);
 
+        preferenceHelper = new PreferenceHelper(this);
 
         Handler handler = new Handler();
         handler.postDelayed( new Runnable() {
@@ -29,10 +31,9 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void nextActivity() {
-        UserManager userManager = UserManager.getInstance();
 
       //  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (!userManager.isLoggedIn()) {
+        if (!preferenceHelper.isLogin()) {
             //chua login
             Intent intent = new Intent( this, SignInActivity.class );
             startActivity( intent );

@@ -14,6 +14,12 @@ public class PreferenceHelper {
         sharedPreferences = context.getSharedPreferences("preferencesHelper", Context.MODE_PRIVATE);
     }
 
+    public String getListItem(){
+        return sharedPreferences.getString(ListItem, "");
+    }
+    public void setListItem(String listItem){
+        sharedPreferences.edit().putString(ListItem, listItem).apply();
+    }
     public String getListItemCard() {
         return sharedPreferences.getString(ItemCard, "");
     }
@@ -69,4 +75,6 @@ public class PreferenceHelper {
     private final String IsLogin = "isLogin";
     private final String User = "user";
     private final String QuanItemCard = "quanItemCard";
+
+    private final String ListItem = "listItem";
 }
