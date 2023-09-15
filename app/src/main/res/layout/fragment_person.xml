@@ -114,9 +114,6 @@
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="10dp"
                     />
-
-
-
             </LinearLayout>
 
 
