@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:background="#EFD2D2"
-        tools:context=".SignUpActivity">
+        tools:context=".ui.activity.SignUpActivity">
 
         <TextView
             android:layout_width="match_parent"

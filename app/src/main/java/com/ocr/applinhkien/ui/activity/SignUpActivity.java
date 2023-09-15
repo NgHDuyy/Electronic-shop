@@ -1,4 +1,4 @@
-package com.ocr.applinhkien;
+package com.ocr.applinhkien.ui.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,16 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ocr.applinhkien.interfaceAPI.ApiInterface;
-import com.ocr.applinhkien.model.SignUpResponse;
-import com.ocr.applinhkien.retrofit.RetrofitClient;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.ocr.applinhkien.R;
+import com.ocr.applinhkien.interfaceAPI.StringCallback;
+import com.ocr.applinhkien.retrofit.APIHelper;
 
 public class SignUpActivity extends AppCompatActivity {
-    ApiInterface apiInterface;
     private EditText editUsername, editPhoneNumber, editAddress, editCity, editEmail, editPassword;
     private RadioButton rbNam, rbNu;
     private Button btnSignUp;
@@ -72,21 +67,15 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Bạn chưa nhập mật khẩu", Toast.LENGTH_SHORT).show();
         } else {
             if (str_password.equals(str_password)) {
-                apiInterface.dangky(str_user_name, isMale ? "Nam" : "Nữ", str_phone_number, str_address, str_city, str_email, str_password).enqueue(new Callback<SignUpResponse>() {
+                new APIHelper().signUp(str_user_name, isMale ? "Nam" : "Nữ", str_phone_number, str_address, str_city, str_email, str_password, new StringCallback() {
                     @Override
-                    public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-                        if (response.isSuccessful()) {
+                    public void execute(String str) {
+                        if (!str.isEmpty()){
                             Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-                            Toast.makeText(SignUpActivity.this, "Đăng ký thất bại" + response.code(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                         }
-                    }
-
-                    @Override
-                    public void onFailure(Call<SignUpResponse> call, Throwable t) {
-                        Toast.makeText(SignUpActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
-                        t.printStackTrace();
                     }
                 });
             } else {
@@ -98,7 +87,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        apiInterface = RetrofitClient.getApi();
         editUsername = findViewById(R.id.edt_username);
         rbNam = findViewById(R.id.rb_nam);
         rbNu = findViewById(R.id.rb_nu);

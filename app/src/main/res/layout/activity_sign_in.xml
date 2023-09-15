@@ -11,7 +11,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="#EFD2D2"
-    tools:context=".SignInActivity">
+    tools:context=".ui.activity.SignInActivity">
 
     <ImageView
         android:layout_width="match_parent"

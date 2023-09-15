@@ -1,4 +1,4 @@
-package com.ocr.applinhkien;
+package com.ocr.applinhkien.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,11 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ocr.applinhkien.R;
 import com.ocr.applinhkien.model.UserManager;
 
 
-public class FastScreen extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -8,15 +8,20 @@ public class Item {
     private int price;
     private int soluong;
     private int sale;
+    private int type;
 
-    public Item(int id,String name, String urlImage, String mota, int price, int soluong,int sale) {
+    public Item(int id, String name, String urlImage, String mota, int price, int soluong, int sale, int type) {
         this.id = id;
+        this.name = name;
         this.urlImage = urlImage;
         this.mota = mota;
         this.price = price;
         this.soluong = soluong;
-        this.name=name;
-        this.sale=sale;
+        this.sale = sale;
+        this.type = type;
+    }
+
+    public Item() {
     }
 
     public String getName() {
@@ -73,5 +78,13 @@ public class Item {
 
     public void setSale(int sale) {
         this.sale = sale;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

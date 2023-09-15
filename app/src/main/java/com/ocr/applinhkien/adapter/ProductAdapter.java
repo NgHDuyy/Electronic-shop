@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ocr.applinhkien.R;
+import com.ocr.applinhkien.interfaceAPI.IntegerCallback;
 import com.ocr.applinhkien.model.Item;
 
 import java.text.DecimalFormat;
@@ -20,10 +21,12 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder>{
     private Context mCOContext;
+    private IntegerCallback itemClickCallback;
     private List<Item> mItemList;
 
-    public ProductAdapter(Context mCOContext) {
+    public ProductAdapter(Context mCOContext, IntegerCallback listener) {
         this.mCOContext = mCOContext;
+        this.itemClickCallback = listener;
     }
     public void setData(List<Item> itemList){
         this.mItemList=itemList;
@@ -66,6 +69,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         }
 
+        holder.itemView.setOnClickListener(v -> {
+            itemClickCallback.execute(position);
+        });
 
     }
 

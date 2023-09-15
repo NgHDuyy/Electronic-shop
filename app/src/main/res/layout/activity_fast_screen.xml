@@ -8,7 +8,7 @@
     android:padding="20dp"
     android:background="@color/white"
     android:gravity="center"
-    tools:context=".FastScreen">
+    tools:context=".ui.activity.SplashScreen">
 
 </LinearLayout>
 

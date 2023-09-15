@@ -1,4 +1,4 @@
-package com.ocr.applinhkien;
+package com.ocr.applinhkien.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
